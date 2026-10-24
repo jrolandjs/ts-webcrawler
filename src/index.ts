@@ -1,6 +1,17 @@
-import { getURLsFromHTML } from "./crawl";
+import { argv } from "node:process";
 
-const inputURL = "https://crawler-test.com";
-const inputBody = `<html><body><a href="/path/one"><span>Boot.dev</span></a></body></html>`;
+function main() {
+  if (process.argv.length < 3) {
+    console.log("no website provided");
+    process.exit(1);
+  }
+  if (process.argv.length > 3) {
+    console.log("too many arguments provided");
+    process.exit(1);
+  }
+  const baseURL = process.argv[2];
+  console.log(`starting crawl of: ${baseURL}...`);
+  process.exit(0);
+}
 
-console.log(getURLsFromHTML(inputURL, inputBody));
+main();
