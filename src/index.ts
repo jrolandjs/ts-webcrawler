@@ -1,6 +1,6 @@
-import { argv } from "node:process";
+import { crawlSiteAsync } from "./crawl";
 
-function main() {
+async function main() {
   if (process.argv.length < 3) {
     console.log("no website provided");
     process.exit(1);
@@ -10,7 +10,13 @@ function main() {
     process.exit(1);
   }
   const baseURL = process.argv[2];
+
   console.log(`starting crawl of: ${baseURL}...`);
+
+  const pages = await crawlSiteAsync(baseURL);
+
+  console.log(pages);
+
   process.exit(0);
 }
 
